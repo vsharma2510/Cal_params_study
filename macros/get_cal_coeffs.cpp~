@@ -1,0 +1,42 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cstdlib>
+
+#include "QCuore.hh"
+#include "QError.hh"
+#include "QGlobalHandle.hh"
+#include "QMessage.hh"
+#include "QGlobalDataManager.hh"
+#include "QDetChannelCollectionHandle.hh"
+#include "QHeader.hh"
+#include "QPulseInfo.hh"
+#include "QTObject.hh"
+#include "QTObjectHandle.hh"
+#include "QCalibrationParametersHandle.hh"
+#include "QCalibrationResiduals.hh"
+
+using namespace std;
+using namespace Cuore;
+
+int main()
+{
+  Cuore::QGlobalDataManager dm;
+  int tower,channel,dataset;
+
+  /* Setting up names of input cal_coeffs files */
+  TString working_dir = "/nfs/cuore1/scratch/vsharma/Miscalibration_cal_coeff/data";
+  //for(dataset=3601;dataset<3616;dataset++)
+    //{
+      for(tower=1;tower<4;tower++)
+	{
+	  TString cal_coeffs_file_name = Form("%s/ds%d/cal_coeff_ds%d_tower%.3d.root",working_dir.Data(),dataset,dataset,tower);
+
+	  for(channel=tower*52;channel>((tower-1)*52);channel--)
+	    {
+	      cout<<"Tower "<<tower<<" has channels "<<channel<<endl;
+	    }
+	}
+      // }
+      return 0;
+}
